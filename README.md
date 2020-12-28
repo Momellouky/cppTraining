@@ -13,7 +13,7 @@ This repository contains C++ assignment labs solution for absolute beginners. It
 <br> 
 <br>
 Output <br> <br> 
-<img width = 30% src ="Img/right_triangle.jpg">
+<img width = 15% src ="Img/right_triangle.jpg">
 
 * Function 
     * Triangular number 
