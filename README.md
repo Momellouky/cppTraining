@@ -23,7 +23,7 @@ Output <br> <br>
         It is simply the number of dots in each triangular pattern: <br> 
 
         <img src = "Img/triangular_numbers.jpg"> <br> 
-        [source]("https://www.mathsisfun.com/algebra/triangular-numbers.html")
+        [source](https://www.mathsisfun.com/algebra/triangular-numbers.html)
         <br> 
 
     * Hexadecimal ( recursive ) 
