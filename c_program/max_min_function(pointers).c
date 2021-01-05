@@ -1,39 +1,50 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 
-void  Max_Min(int* a, int* b)
+void  Max_Min(int a, int b, int *max , int *min)
 {
-     // cette fonction ne traite pas le cas de *a == *b   
+      
+    *max = a; 
+    *min = a;
+    // si b le max 
+    
+    if ( *max < b ) 
+    {    
+        *max = b;       
+    }   
+    if(*min > b)
+            *min = b; 
+    
      
-    // soit a le max 
-    
-    if ( *a < *b ) 
-        printf("%d est le max et %d est le min", *b , *a); 
-    
-    else
-        printf("%d est le max et %d est le min", *a, *b); 
      
    
         
 }
-int main()
+void main()
 {
-    int *num1 , *num2 ; 
-    
-    // résérver la mémoire 
-    
-    num1 = (int*)malloc(sizeof(int)); 
-    num2 = (int*)malloc(sizeof(int));
+    int a, b;
+    int  max, min; 
     
     // saisir la valeur des deux entiers. 
     
     printf("saisir la valeur des deux entiers \t"); 
-    scanf("%d%d", num1, num2); 
+    scanf("%d%d", &a, &b); 
     
-    // appeller la fonction Max_Min(int *a, int *b)
+    // soit a le max  
     
-    Max_Min(num1, num2); 
+ 
+    
+    // appeller la fonction Max_Min(int *a, int *b) pour verifier l'hypothese
+    
+    Max_Min(a, b, &max, &min);
+    
+    // afficher les resultats.  
+    
+    printf("le nombre max est: %d et le nombre min est %d \n", max, min);
     
     
-    return 0;
+    system("pause"); 
+    
+    
 }
