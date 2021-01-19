@@ -65,13 +65,14 @@ int main()
     
     T = (int*)malloc(sizeof(int) * N);
     
-    printf("Saisir le nombre V: \t"); 
-    scanf("%d", &V);
-    
     saisie_tableau(T,N); 
     
     afficher_tableau(T,N); 
+  
+    printf("\nSaisir le nombre V: \t"); 
+    scanf("%d", &V);
     
+     
     int indice_de_V = trouver_V(T, N, V); 
     
     printf("\nL'indice de %d est %d\n",V,  indice_de_V);
