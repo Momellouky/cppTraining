@@ -9,15 +9,17 @@
 
 const int _STACK_SIZE_ = 20; 
 
+
+template <class _data_type_> 
 class stack {
     
     int top; 
-    int element[_STACK_SIZE_]; 
+    _data_type_ element[_STACK_SIZE_]; 
     
     public:
         stack(): top(-1) {}
         
-        void push(int _element_to_push_)
+        void push(_data_type_ _element_to_push_)
         {
             if(top >= _STACK_SIZE_) 
                 std::cout << "stack full" << std::endl; 
@@ -30,12 +32,14 @@ class stack {
         {
             return top < 0; 
         }
-        void pop()
+        _data_type_ pop()
         {
             if(isEmpty())
                 std::cout << "stack is empty" << std::endl; 
             else
                 top--; 
+                
+            return element[top + 1]; 
         }
         
         
@@ -57,7 +61,7 @@ class stack {
 int main()
 {
     
-    stack s; 
+    stack<int> s; 
     
     s.push(5); 
     s.push(20);
@@ -65,10 +69,11 @@ int main()
     
     s.printStack(); 
     
-    s.pop();  // 100 out ( LIFO ) 
+    int poped = s.pop();  // 100 out ( LIFO ) && returned  
     
     s.printStack(); 
     
+    std::cout << poped << std::endl; 
     
     
 
