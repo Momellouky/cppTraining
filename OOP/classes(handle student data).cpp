@@ -30,7 +30,7 @@ public:
 		memcpy(last_name , "NONE", 20); 
 	}
 
-	student(const char f_name[], const char l_name[], ui s_age, ui s_id)
+	student(const char f_name[], const char l_name[], ui s_age, ui s_id) // constructor
 	{
 
 		student_id  = s_id; 
@@ -41,23 +41,30 @@ public:
 
 	}
 
-	// *Grades are all positive
+	/*
+		* no need for copy constructor.
+	*/ 
 
-	bool grade_negative(float grades[])
+	student(const student& old_student) = delete; 
+
+
+
+	// *Grades are valid
+	bool grade_valid(float grades[])
 	{
 
-		bool is_negative = false; 
+		bool not_valid = false; 
 
 		for(size_t counter_i = 0; counter_i < 6; counter_i++)
 		{
-			if(grades[counter_i] < 0) 
+			if(grades[counter_i] < 0 || grades[counter_i] > 20) 
 			{
-				is_negative = true; 
+				not_valid = true; 
 				break; 
 			} 
 		}
 
-		return is_negative; 
+		return not_valid; 
 
 	}
 
@@ -74,14 +81,14 @@ public:
 
 	// *function to calculate the avarage of student's grades
 	// * return the avg if all grades are valid ( FOR EACH GRADE: ALL GRADES ARE EQUAL 
-	// 	 OR GREATER THEN 0 )
+	// 	 OR GREATER THEN 0 && LESS THEN 20 )
 	// * return -1 if an input isn't valid. 
 
 	float avg_grade(float grades[])
 	{
 		float sum = 0;  
 
-		if(grade_negative(grades))
+		if(grade_valid(grades))
 		{
 
 			std::cout << "Invalid grade" << std::endl;
