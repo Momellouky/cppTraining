@@ -56,7 +56,7 @@ int main()
     
     lireEtudiant(T,n); 
     
-    ActualiserMoyenne(T,i); 
+    ActualiserMoyenne(T,n); 
     
     for(i = 0; i < n ; i++)
     {
