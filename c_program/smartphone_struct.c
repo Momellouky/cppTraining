@@ -41,7 +41,56 @@ void saisir_Tableau(smartphone *T, int N)
 void Afficher(smartphone T, int n)
 {
     printf("Id_client: %d   Type de panne: %d", 
-            T.Id_client, T.type_panne.panne); 
+            T.Id_client, T.type_panne.panne);
+    
+    printf("\n"); 
+}
+
+int panne_materielle(smartphone *T, int n)
+{
+    int i,c = 0; 
+    
+    for(i = 0; i < n; i++)
+    {
+        if(T[i].type_panne.panne == 1)
+            c++; 
+    }
+    
+    return c; 
+}
+void trie(smartphone *T, int N)
+{
+    int i, j, indice_min, aide; 
+    
+    for(i = 0; i < N ; i++)
+    {
+        indice_min = i; 
+        
+        for(j = i +1; j < N; j++)
+        {
+            if(T[j].type.model < T[indice_min].type.model)
+                indice_min = j; 
+        }
+        
+        if( i != indice_min)
+        {
+            aide = T[i].type.model; 
+            T[i].type.model = T[indice_min].type.model; 
+            T[indice_min].type.model = aide; 
+        }
+    }
+}
+
+void print(smartphone *T, int N)
+{
+    int i; 
+    
+    for( i = 0; i < N ; i++)
+    {
+        printf("| %d ", T[i].type.model);
+    }
+    
+    printf("\n"); 
 }
 int main() {
     
@@ -57,5 +106,14 @@ int main() {
     
     Afficher(T[0], N); 
     
+    trie(T, N); 
+    
+    print(T, N); // not required 
+    
+    int panne = panne_materielle(T, N); 
+    
+    printf("Les smartphones avec panne materielle: %d", panne); 
+    
+    system("pause"); 
     return 0;
 }
