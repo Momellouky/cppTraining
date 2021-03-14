@@ -12,6 +12,12 @@ class Linkedlist
 	node *tail; 
 	int lenght; 
 
+	int is_empty()
+	{
+		if(lenght == 0) return 1; 
+		return 0; // is not empty
+	}
+
 	public:
 
 	Linkedlist()
@@ -93,6 +99,61 @@ class Linkedlist
 	}
 
 
+	void remove_first()
+	{
+		if(is_empty() == 1)
+			std::cout << "list is empty: can't delete" << std::endl; 
+
+		if(lenght == 1)
+		{
+			delete head; 
+			head = tail = NULL; 
+			lenght--; 
+		}
+		else
+		{
+			node *cur = new node; 
+			cur = head; 
+			head = head->next; 
+			delete cur; 
+			lenght--;
+		}
+
+	}
+
+	void remove_last()
+	{
+		if(is_empty() == 1)
+			std::cout << "list is empty: can't delete" << std::endl; 
+
+		if(lenght == 1)
+		{
+			delete head; 
+			head = tail = NULL; 
+			lenght--; 
+		}
+		else
+		{
+			node *cur = new node; 
+			node *prev = new node; 
+
+			cur = head->next; 
+			prev = head; 
+
+			while(cur != NULL)
+			{
+				prev = cur; 
+				cur = cur->next; 
+			}
+
+			delete cur; 
+			prev->next = NULL; 
+			tail = prev; 
+			lenght--; 
+		}
+	}
+
+
 	void print()
 	{
 		node *cur = new node; 
@@ -119,6 +180,11 @@ int main(){
 	 l.insert_form_end(50);
 	 l.insert_form_end(60);
 	 l.insert_from_pos(2,40);
+	 
+
+	 l.remove_last(); 
+	 l.remove_first(); 
+
 	 l.print(); 
 
 	 return 0; 
