@@ -108,7 +108,7 @@ class Linkedlist
 		{
 			delete head; 
 			head = tail = NULL; 
-			lenght--; 
+			lenght--; // lenght = 0; 
 		}
 		else
 		{
@@ -140,19 +140,103 @@ class Linkedlist
 			cur = head->next; 
 			prev = head; 
 
-			while(cur != NULL)
+			while(cur != tail)
 			{
 				prev = cur; 
 				cur = cur->next; 
 			}
 
-			delete cur; 
 			prev->next = NULL; 
+			delete cur; 
 			tail = prev; 
 			lenght--; 
 		}
 	}
 
+	void remove(int element)
+	{
+		if(is_empty() == 1)
+			std::cout << "list is empty: can't delete" << std::endl; 
+
+		if(lenght == 1)
+		{
+			delete head; 
+			head = tail = NULL; 
+			lenght--; 
+		}
+
+		if(head->item == element)
+			remove_first();
+
+		else if(tail->item == element)
+			remove_last(); 
+
+		else
+		{
+			node *cur = new node; 
+			node *prev = new node; 
+
+			cur = head->next; 
+			prev = head;
+
+			while(cur->item != element)
+			{
+				prev = cur; 
+				cur = cur->next; 
+			}
+
+			prev->next = cur->next;
+			if(cur == tail)
+				tail = prev ; 
+			delete cur; 
+			lenght--; 
+
+			if(lenght == 0)
+				head = tail = NULL; 
+		}
+	}
+
+	void remove_key(int key)
+	{
+		if(is_empty() == 1)
+			std::cout << "list empty: can't delete" << std::endl; 
+
+		if(lenght == 1)
+		{
+			delete head; 
+			head = tail = NULL; 
+			lenght--; 
+		}
+		if(key == 0)
+			remove_first(); 
+		else if(key == lenght-1 )
+			remove_last();
+		else
+		{
+			int counter = 1; 
+			node *cur = new node; 
+			node *prev = new node;
+			cur = head->next; 
+			prev = head; 
+
+			while(counter <= key)
+			{
+				prev = cur; 
+				cur = cur->next; 
+				counter++; 
+			} 
+
+			prev->next = cur->next; 
+
+			if(cur == tail)
+				tail = prev; 
+
+			delete cur; 
+
+			lenght--; 
+
+		}
+	}
 
 	void print()
 	{
@@ -182,9 +266,12 @@ int main(){
 	 l.insert_from_pos(2,40);
 	 
 
-	 l.remove_last(); 
 	 l.remove_first(); 
+	 l.remove_last(); 
+	 l.remove(40); 
+	 l.remove_key(1); 
 
+	 
 	 l.print(); 
 
 	 return 0; 
