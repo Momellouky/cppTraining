@@ -219,7 +219,7 @@ class Linkedlist
 			cur = head->next; 
 			prev = head; 
 
-			while(counter <= key)
+			while(counter < key)
 			{
 				prev = cur; 
 				cur = cur->next; 
@@ -265,10 +265,7 @@ int main(){
 	 l.insert_form_end(60);
 	 l.insert_from_pos(2,40);
 	 
-
-	 l.remove_first(); 
-	 l.remove_last(); 
-	 l.remove(40); 
+	 
 	 l.remove_key(1); 
 
 	 
