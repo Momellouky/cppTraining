@@ -238,6 +238,77 @@ class Linkedlist
 		}
 	}
 
+	void reverse()
+	{
+		if(is_empty() == 1)
+			std::cout << "empty list: can't reverse" << std::endl; 
+
+		if(lenght != 1 )
+		{
+			node *prev, *cur, *holder; 
+			prev = NULL; 
+			cur = head; 
+			holder = cur->next; 
+
+			while(holder != NULL && cur != NULL)
+			{
+				holder = cur->next; 
+				cur->next = prev; 
+				prev = cur; 
+				cur = holder; 
+			}
+
+			head = prev; 
+			// find tail 
+			cur = head; 
+			while(cur->next != NULL)
+			{
+				cur = cur->next; 
+			}
+
+			tail = cur; 
+		}
+
+	}
+
+	int search(int element)
+	{
+		if(is_empty() == 1)
+			std::cout << "list empty: can't search" << std::endl; 
+
+		else if(lenght == 1)
+		{
+			if(head->item == element) 
+				return 0; 
+		}
+		else
+		{
+			int pos = 0; 
+			node *cur ; 
+			cur = head; 
+
+			while(cur != NULL)
+			{
+				if(cur->item == element)
+					return pos; 
+
+				cur = cur->next; 
+				pos++; 
+			}	
+		}
+
+		return -1; 
+
+
+
+
+	}
+
+	void test_tail()
+	{
+		std::cout << "tail: " << tail->item << std::endl; 
+	}
+
 	void print()
 	{
 		node *cur = new node; 
@@ -249,6 +320,11 @@ class Linkedlist
 		}
 	}
 
+	int list_size()
+	{
+		return lenght;
+	}
+
 
 
 
@@ -258,6 +334,7 @@ class Linkedlist
 int main(){
 
 	Linkedlist l; 
+	int position; 
 
 	 l.insert_form_start(20); 
 	 l.insert_form_end(30); 
@@ -265,10 +342,11 @@ int main(){
 	 l.insert_form_end(60);
 	 l.insert_from_pos(2,40);
 	 
-	 
-	 l.remove_key(1); 
+	 l.reverse(); 
+	 position = l.search(20); 
 
-	 
+	 std::cout << "Pos = " << position << std::endl; 
+
 	 l.print(); 
 
 	 return 0; 
